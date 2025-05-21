@@ -4,7 +4,7 @@ import plotly.express as px
 from sqlalchemy import create_engine, text
 
 # Streamlit page config
-st.set_page_config(page_tistle="Sales Dashboard", layout="centered")
+st.set_page_config(page_title="Sales Dashboard", layout="centered")
 
 # Improved Cute Theme with better contrast and correct background
 st.markdown("""
