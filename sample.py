@@ -73,8 +73,8 @@ with st.container():
             plot_bgcolor='#d6f0ff',     # Match background color
             paper_bgcolor='#d6f0ff',    # Match background color
             xaxis_tickangle=-45,
-            xaxis=dict(title='Product', color='#1a1a1a'),
-            yaxis=dict(title='Count', color='#1a1a1a', showgrid=True, gridcolor='LightGray'),
+            xaxis=dict(title='Product', color='#000000'),
+            yaxis=dict(title='Count', color='#000000', showgrid=True, gridcolor='Black'),
             title_x=0.5
         )
         st.plotly_chart(fig, use_container_width=True)
