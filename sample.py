@@ -6,21 +6,21 @@ from sqlalchemy import create_engine, text
 # Streamlit page config
 st.set_page_config(page_title="Sales Dashboard", layout="centered")
 
-# Improved Cute Theme with better contrast and correct background
+# Custom styles with baby blue background and black text
 st.markdown("""
     <style>
-        html, body, .stApp {
-            background-color: #d6f0ff; /* Baby blue background */
-            color: #222222;
+        body {
+            background-color: #d6f0ff;
+            color: #000000;
         }
         .main {
-            background-color: #f0f8ff; /* light pastel blue instead of white */
+            background-color: #ffffff;
             border-radius: 20px;
             padding: 30px;
-            box-shadow: 0 8px 16px rgba(173, 216, 230, 0.4);
+            box-shadow: 0 8px 16px rgba(173, 216, 230, 0.3);
         }
-        h1, h2, h3, .stMarkdown h1, .stMarkdown h2 {
-            color: #1a1a1a; /* Darker title color */
+        h1, h2, p, .stMarkdown, .stText, .stSubheader {
+            color: #000000 !important;
         }
         .block-container {
             padding-top: 2rem;
@@ -29,7 +29,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Container styling for main content
+# Container for layout
 with st.container():
     st.markdown('<div class="main">', unsafe_allow_html=True)
 
@@ -51,32 +51,31 @@ with st.container():
     # Load data
     df = load_data()
 
-    # Title and Subheader
+    # Dashboard header
     st.title("🌈 Sales Dashboard")
     st.subheader("🦋 Most Loved Products by Our Customers 🦋")
 
     if not df.empty:
-        # Custom gradient from baby blue to baby pink
         fig = px.bar(
             df,
             x="Product",
             y="count",
-            title="Most Popular Products by Purchases",
             labels={"count": "Number of Purchases", "Product": "Product"},
             color="count",
-            color_continuous_scale=[[0, '#89CFF0'], [1, '#FFB6C1']],
-            text="count",
+            color_continuous_scale=[[0, '#89CFF0'], [1, '#FFB6C1']],  # baby blue to baby pink
+            text="count"
         )
         fig.update_traces(texttemplate='%{text}', textposition='outside')
         fig.update_layout(
-            title_font=dict(size=22, color='#1a1a1a'),
-            font=dict(family="Comic Sans MS, Arial", size=14, color="#1a1a1a"),
-            plot_bgcolor='#d6f0ff',     # Match background color
-            paper_bgcolor='#d6f0ff',    # Match background color
+            title="Most Popular Products by Purchases",
+            title_font=dict(size=22, color='#000000'),
+            title_x=0.5,  # Center the title
+            font=dict(family="Comic Sans MS, Arial", size=14, color="#000000"),
+            plot_bgcolor='#d6f0ff',
+            paper_bgcolor='#d6f0ff',
             xaxis_tickangle=-45,
-            xaxis=dict(title='Product', color='#1a1a1a'),
-            yaxis=dict(title='Count', color='#1a1a1a', showgrid=True, gridcolor='LightGray'),
-            title_x=0.5
+            xaxis=dict(title='Product', color='#000000'),
+            yaxis=dict(title='Count', color='#000000', showgrid=True, gridcolor='LightGray'),
         )
         st.plotly_chart(fig, use_container_width=True)
     else:
